@@ -1,0 +1,53 @@
+[comment encoding = UTF-8 /]
+[module generate('http://fr.ubo.mde.kouassi/modeleScratch')]
+
+
+[template public transfoModeleScratch(aProgrammeScratch : ProgrammeScratch)]
+[comment @main/]
+[file (aProgrammeScratch.name, false, 'UTF-8')]
+
+[protected ('nbreDeBloc')]
+	le xmi contient [aProgrammeScratch.main->size().toString()/] bloc
+[/protected]
+[comment parcours des noms de blocs /]
+[for (main)]
+[if (name = 'principal')] 
+	[name/] trouvé
+[else]
+	[name/] est différent de principal
+[/if]
+[/for]
+
+[comment ensemble de éléments de type mouvement/]
+Blocs de type "Mouvement":
+[for (eAllContents(Mouvement))]
+- [name/]
+[/for]
+
+
+Numero de l'iteration
+[for (eAllContents(Mouvement))]
+	[if (i>1)]
+		[name/] est le [i/]eme element
+	[else] 
+		[name/] est le 1er
+	[/if]
+[/for]
+
+
+[comment generation de mon programme scratch/]
+[comment verifier si le programme contient des elements de type variable et afficher leur initialisaton/]
+Programme scratch: [aProgrammeScratch.name/]	
+	Bloc [aProgrammeScratch.main.name/]
+	[for (act : Action |eAllContents(Action))] [comment parcours de tous les elements de type Action/]
+		[if (act.oclIsTypeOf(Conditionnelle))]
+			si [act.followingSiblings().oclAsType(Variable).name/] [act.name/] [comment affcher la condition en mm tps que le nom/] 
+		[else]
+			[act.name/]
+		[/if]
+	[/for]
+
+
+
+[/file]
+[/template]

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modeleScratch:ProgrammeScratch xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeleScratch="http://fr.ubo.mde.kouassi/modeleScratch" name="monprog">
+  <main name="bloc principal">
+    <actions xsi:type="modeleScratch:Avancer" name="aller en arriere" vitesse="50.0" direction="arriere"/>
+    <actions xsi:type="modeleScratch:Attente" name="wait5" duree="5.0"/>
+    <actions xsi:type="modeleScratch:Tourner" name="tourner a gauche" vitesse="50.0" sens="gauche"/>
+    <actions xsi:type="modeleScratch:Conditionnelle" name="condition sur V" condition="si V vrai" variables="//@main/@variables.0">
+      <vrai name="truebloc">
+        <actions xsi:type="modeleScratch:Tourner" name="tourner a droite" vitesse="50.0" sens="droite"/>
+      </vrai>
+      <faux name="falsebloc">
+        <actions xsi:type="modeleScratch:Attente" name="wait10" duree="10.0"/>
+      </faux>
+    </actions>
+    <variables name="var V" nom=""/>
+  </main>
+</modeleScratch:ProgrammeScratch>
